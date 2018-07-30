@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h4 id="jhi-buy-contact-heading" class="page-title"><span>{{buyContact.id? ('Edit Buy Contract: ' + buyContact.id + ' - ' + buyContact.buyContactCode): 'Create new Buy Contract' }}</span></h4>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <!--<div class="form-group left-input" [hidden]="!buyContact.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           [(ngModel)]="buyContact.id" readonly />
+                </div>-->
+                <div class="inputs-container">
+                    <div class="form-group left-input">
+                        <label class="form-control-label" for="field_buyContactCode">Contract Code</label>
+                        <input type="text" class="form-control" name="buyContactCode" id="field_buyContactCode"
+                               [(ngModel)]="buyContact.buyContactCode" />
+                    </div>
+                    <div class="form-group right-input">
+                        <label class="form-control-label" for="field_number">Contract Number</label>
+                        <input type="number" class="form-control" name="number" id="field_number"
+                               [(ngModel)]="buyContact.number" />
+                    </div>
+                </div>
+                <div class="inputs-container">
+                    <div class="form-group left-input">
+                        <label class="form-control-label" for="field_price">Price (VND)</label>
+                        <input type="text" class="form-control" name="price" id="field_price"
+                               [(ngModel)]="buyContact.price" />
+                    </div>
+                    <div class="form-group right-input">
+                        <label class="form-control-label" for="field_amount">Amount (Tan)</label>
+                        <input type="number" class="form-control" name="amount" id="field_amount"
+                               [(ngModel)]="buyContact.amount" />
+                    </div>
+                </div>
+                <div class="inputs-container">
+                    <div class="form-group left-input">
+                        <label class="form-control-label" for="field_contactDate">Contact Date</label>
+                        <div class="input-group">
+                            <input id="field_contactDate" type="text" class="form-control" name="contactDate" ngbDatepicker  #contactDateDp="ngbDatepicker" [(ngModel)]="buyContact.contactDate"
+                            />
+                            <span class="input-group-append">
+                                <button type="button" class="btn btn-secondary" (click)="contactDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group right-input">
+                        <label class="form-control-label" for="field_etaDate">ETA Date</label>
+                        <div class="input-group">
+                            <input id="field_etaDate" type="text" class="form-control" name="etaDate" ngbDatepicker  #etaDateDp="ngbDatepicker" [(ngModel)]="buyContact.etaDate"
+                            />
+                            <span class="input-group-append">
+                                <button type="button" class="btn btn-secondary" (click)="etaDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputs-container">
+                    <div class="form-group left-input">
+                        <label class="form-control-label" for="field_product">Product</label>
+                        <select class="form-control" id="field_product" name="product" [(ngModel)]="buyContact.product" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="productOption.id === buyContact.product?.id ? buyContact.product : productOption" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group right-input">
+                        <label class="form-control-label" for="field_provider">Provider</label>
+                        <select class="form-control" id="field_provider" name="provider" [(ngModel)]="buyContact.provider" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="providerOption.id === buyContact.provider?.id ? buyContact.provider : providerOption" *ngFor="let providerOption of providers; trackBy: trackProviderById">{{providerOption.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_note">Note</label>
+                    <input type="text" class="form-control" name="note" id="field_note"
+                        [(ngModel)]="buyContact.note" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="buyContact.status" />
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

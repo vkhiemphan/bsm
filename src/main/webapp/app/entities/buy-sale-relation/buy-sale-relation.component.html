@@ -1,0 +1,64 @@
+<div>
+    <h4 id="page-heading">
+        <span>Buy Sale Relations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-buy-sale-relation" [routerLink]="['/buy-sale-relation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Buy Sale Relation
+            </span>
+        </button>
+    </h4>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="buySaleRelations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Amount (Tan)</span></th>
+            <th><span>Buy Contract</span></th>
+            <th><span>Sale Contract</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let buySaleRelation of buySaleRelations ;trackBy: trackId">
+                <td><a [routerLink]="['/buy-sale-relation', buySaleRelation.id, 'view' ]">{{buySaleRelation.id}}</a></td>
+                <td>{{buySaleRelation.amount}}</td>
+                <td>
+                    <div *ngIf="buySaleRelation.buyContact">
+                        <a [routerLink]="['../buy-contact', buySaleRelation.buyContact?.id, 'view' ]" >{{buySaleRelation.buyContact?.buyContactCode}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="buySaleRelation.saleContact">
+                        <a [routerLink]="['../sale-contact', buySaleRelation.saleContact?.id, 'view' ]" >{{buySaleRelation.saleContact?.saleContactCode}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/buy-sale-relation', buySaleRelation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/buy-sale-relation', buySaleRelation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'buy-sale-relation/'+ buySaleRelation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

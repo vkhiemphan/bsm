@@ -1,0 +1,16 @@
+.inputs-container {
+    width: 100%;
+    display: flex;
+    .left-input {
+        margin-right: 10px;
+    }
+    .right-input, .left-input {
+        width: 50%;
+    }
+}
+
+.form-control-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #8aa5aa;
+}

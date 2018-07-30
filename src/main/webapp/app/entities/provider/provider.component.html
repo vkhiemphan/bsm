@@ -1,0 +1,60 @@
+<div>
+    <h4 id="page-heading">
+        <span>Providers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-provider" [routerLink]="['/provider/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Provider
+            </span>
+        </button>
+    </h4>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="providers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Provider Code</span></th>
+            <th><span>Name</span></th>
+            <th><span>Address</span></th>
+            <th><span>Note</span></th>
+            <th><span>Email</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let provider of providers ;trackBy: trackId">
+                <td><a [routerLink]="['/provider', provider.id, 'view' ]">{{provider.id}}</a></td>
+                <td>{{provider.providerCode}}</td>
+                <td>{{provider.name}}</td>
+                <td>{{provider.address}}</td>
+                <td>{{provider.note}}</td>
+                <td>{{provider.email}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/provider', provider.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/provider', provider.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'provider/'+ provider.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

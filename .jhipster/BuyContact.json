@@ -1,0 +1,56 @@
+{
+    "name": "BuyContact",
+    "fields": [
+        {
+            "fieldName": "buyContactCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "number",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "provider",
+            "otherEntityName": "provider",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180726182951",
+    "entityTableName": "buy_contact",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

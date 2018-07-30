@@ -1,0 +1,32 @@
+{
+    "name": "BuySaleRelation",
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "buyContact",
+            "otherEntityName": "buyContact",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "saleContact",
+            "otherEntityName": "saleContact",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180726182952",
+    "entityTableName": "buy_sale_relation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

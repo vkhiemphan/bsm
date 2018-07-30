@@ -1,0 +1,11 @@
+table.sale-contract-list, table.buy-contract-list {
+    font-size: 13px;
+    th, td {
+        padding: 5px;
+        vertical-align: middle;
+        border-top: 1px solid #dee2e6;
+        .form-control {
+            padding: 2px;
+        }
+    }
+}

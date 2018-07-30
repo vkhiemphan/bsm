@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-buy-sale-relation-heading">Create or edit a Buy Sale Relation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!buySaleRelation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="buySaleRelation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                        [(ngModel)]="buySaleRelation.amount" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_buyContact">Buy Contract</label>
+                    <select class="form-control" id="field_buyContact" name="buyContact" [(ngModel)]="buySaleRelation.buyContact" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="buyContactOption.id === buySaleRelation.buyContact?.id ? buySaleRelation.buyContact : buyContactOption" *ngFor="let buyContactOption of buycontacts; trackBy: trackBuyContactById">{{buyContactOption.buyContactCode}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_saleContact">Sale Contract</label>
+                    <select class="form-control" id="field_saleContact" name="saleContact" [(ngModel)]="buySaleRelation.saleContact" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="saleContactOption.id === buySaleRelation.saleContact?.id ? buySaleRelation.saleContact : saleContactOption" *ngFor="let saleContactOption of salecontacts; trackBy: trackSaleContactById">{{saleContactOption.saleContactCode}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

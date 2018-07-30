@@ -1,0 +1,76 @@
+<div>
+    <h4 id="page-heading">
+        <span class="page-title">Sale Contracts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sale-contact" [routerLink]="['/sale-contact/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Sale Contract
+            </span>
+        </button>
+    </h4>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="saleContacts">
+        <table class="table table-striped sale-contract-list">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sale Contract Code</span></th>
+            <th><span>Number</span></th>
+            <th><span>Amount (Tan)</span></th>
+            <th><span>Price (VND)</span></th>
+            <th><span>Contact Date</span></th>
+            <th><span>Delivery Date</span></th>
+            <th><span>Status</span></th>
+            <th><span>Product</span></th>
+            <th><span>Customer</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let saleContact of saleContacts ;trackBy: trackId">
+                <td><a [routerLink]="['/sale-contact', saleContact.id, 'view' ]">{{saleContact.id}}</a></td>
+                <td>{{saleContact.saleContactCode}}</td>
+                <td>{{saleContact.number}}</td>
+                <td>{{saleContact.amount}}</td>
+                <td>{{saleContact.price}}</td>
+                <td>{{saleContact.contactDate | date:'mediumDate'}}</td>
+                <td>{{saleContact.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{saleContact.status}}</td>
+                <td>
+                    <div *ngIf="saleContact.product">
+                        <a [routerLink]="['../product', saleContact.product?.id, 'view' ]" >{{saleContact.product?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="saleContact.customer">
+                        <a [routerLink]="['../customer', saleContact.customer?.id, 'view' ]" >{{saleContact.customer?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sale-contact', saleContact.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sale-contact', saleContact.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sale-contact/'+ saleContact.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
