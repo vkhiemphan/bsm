@@ -1,0 +1,34 @@
+{
+    "name": "TransportPlan",
+    "fields": [
+        {
+            "fieldName": "transportDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "transportTime",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "amountPerOne",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "transportContractPart",
+            "otherEntityName": "transportContractPart",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730140017",
+    "entityTableName": "transport_plan",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transportHistory">
+            <h2><span>Transport History</span> {{transportHistory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transport Date</span></dt>
+                <dd>
+                    <span>{{transportHistory.transportDate}}</span>
+                </dd>
+                <dt><span>Transport Time</span></dt>
+                <dd>
+                    <span>{{transportHistory.transportTime}}</span>
+                </dd>
+                <dt><span>Amount Per One</span></dt>
+                <dd>
+                    <span>{{transportHistory.amountPerOne}}</span>
+                </dd>
+                <dt><span>Transport Contract Part</span></dt>
+                <dd>
+                    <div *ngIf="transportHistory.transportContractPart">
+                        <a [routerLink]="['/transport-contract-part', transportHistory.transportContractPart?.id, 'view']">{{transportHistory.transportContractPart?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transport-history', transportHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

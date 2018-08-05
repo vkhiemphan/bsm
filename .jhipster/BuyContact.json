@@ -1,8 +1,8 @@
 {
-    "name": "BuyContact",
+    "name": "BuyContract",
     "fields": [
         {
-            "fieldName": "buyContactCode",
+            "fieldName": "buyContractCode",
             "fieldType": "String"
         },
         {
@@ -18,7 +18,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "contactDate",
+            "fieldName": "contractDate",
             "fieldType": "LocalDate"
         },
         {
@@ -45,7 +45,7 @@
         }
     ],
     "changelogDate": "20180726182951",
-    "entityTableName": "buy_contact",
+    "entityTableName": "buy_contract",
     "dto": "no",
     "pagination": "no",
     "service": "no",

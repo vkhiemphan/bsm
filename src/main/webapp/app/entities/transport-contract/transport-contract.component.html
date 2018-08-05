@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span>Transport Contracts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transport-contract" [routerLink]="['/transport-contract/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Transport Contract
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="transportContracts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Contract Code</span></th>
+            <th><span>Contract Number</span></th>
+            <th><span>Contract Date</span></th>
+            <th><span>Start Date</span></th>
+            <th><span>Finish Date</span></th>
+            <th><span>Transport Unit</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transportContract of transportContracts ;trackBy: trackId">
+                <td><a [routerLink]="['/transport-contract', transportContract.id, 'view' ]">{{transportContract.id}}</a></td>
+                <td>{{transportContract.contractCode}}</td>
+                <td>{{transportContract.contractNumber}}</td>
+                <td>{{transportContract.contractDate | date:'mediumDate'}}</td>
+                <td>{{transportContract.startDate | date:'mediumDate'}}</td>
+                <td>{{transportContract.finishDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="transportContract.transportUnit">
+                        <a [routerLink]="['../transport-unit', transportContract.transportUnit?.id, 'view' ]" >{{transportContract.transportUnit?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/transport-contract', transportContract.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/transport-contract', transportContract.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transport-contract/'+ transportContract.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

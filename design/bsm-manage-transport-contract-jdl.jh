@@ -1,0 +1,60 @@
+entity Position {
+	positionCode String,
+	name String,
+	note String,
+	address String
+}
+
+entity TransportUnit {
+	name String,
+	code String,
+	note String,
+	phone String,
+	address String,
+	size String,
+	type String
+}
+
+entity TransportContract {
+	contractCode String,
+	contractNumber Long,
+	contractDate LocalDate,
+	startDate LocalDate,
+	finishDate LocalDate
+}
+
+entity TransportContractPart {
+	price Long,
+    size Long,
+    distance Long,
+    amount Long,
+    currentAmount Long
+}
+
+entity TransportPlan {
+	transportDate LocalDate,
+	transportTime Long,
+	amountPerOne Long
+}
+
+entity TransportHistory {
+	transportDate LocalDate,
+    transportTime Long,
+    amountPerOne Long
+}
+
+entity SaleContract {
+    code String
+}
+
+relationship ManyToOne {
+	TransportContract{transportUnit} to TransportUnit,
+
+    TransportContractPart{saleContract} to SaleContract,
+	TransportContractPart{transportContract} to TransportContract,
+	TransportContractPart{positionStart} to Position,
+	TransportContractPart{positionFinish} to Position,
+
+	TransportPlan{transportContractPart} to TransportContractPart,
+	TransportHistory{transportContractPart} to TransportContractPart
+}

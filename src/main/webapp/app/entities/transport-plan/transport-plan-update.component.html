@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-transport-plan-heading">Create or edit a Transport Plan</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!transportPlan.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="transportPlan.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transportDate">Transport Date</label>
+                    <div class="input-group">
+                        <input id="field_transportDate" type="text" class="form-control" name="transportDate" ngbDatepicker  #transportDateDp="ngbDatepicker" [(ngModel)]="transportPlan.transportDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="transportDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transportTime">Transport Time</label>
+                    <input type="number" class="form-control" name="transportTime" id="field_transportTime"
+                        [(ngModel)]="transportPlan.transportTime" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amountPerOne">Amount Per One</label>
+                    <input type="number" class="form-control" name="amountPerOne" id="field_amountPerOne"
+                        [(ngModel)]="transportPlan.amountPerOne" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transportContractPart">Transport Contract Part</label>
+                    <select class="form-control" id="field_transportContractPart" name="transportContractPart" [(ngModel)]="transportPlan.transportContractPart" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transportContractPartOption.id === transportPlan.transportContractPart?.id ? transportPlan.transportContractPart : transportContractPartOption" *ngFor="let transportContractPartOption of transportcontractparts; trackBy: trackTransportContractPartById">{{transportContractPartOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

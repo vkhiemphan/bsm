@@ -1,9 +1,10 @@
 package com.ant.bsm.web.rest;
 
-import com.ant.bsm.domain.BuyContact;
-import com.ant.bsm.domain.SaleContact;
-import com.ant.bsm.repository.SaleContactRepository;
-import com.ant.bsm.web.rest.dto.BuyContactForSaleDTO;
+import com.ant.bsm.domain.BuyContract;
+import com.ant.bsm.domain.SaleContract;
+import com.ant.bsm.repository.BuyContractRepository;
+import com.ant.bsm.repository.SaleContractRepository;
+import com.ant.bsm.web.rest.dto.BuyContractForSaleDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.ant.bsm.domain.BuySaleRelation;
 import com.ant.bsm.repository.BuySaleRelationRepository;
@@ -37,7 +38,10 @@ public class BuySaleRelationResource {
     private final BuySaleRelationRepository buySaleRelationRepository;
 
     @Autowired
-    private SaleContactRepository saleContactRepository;
+    private SaleContractRepository saleContractRepository;
+
+    @Autowired
+    private BuyContractRepository buyContractRepository;
 
     public BuySaleRelationResource(BuySaleRelationRepository buySaleRelationRepository) {
         this.buySaleRelationRepository = buySaleRelationRepository;
@@ -65,27 +69,30 @@ public class BuySaleRelationResource {
 
     @PostMapping("/buy-sale-relations/save-selected-good-resources/{saleId}")
     @Timed
-    public List<BuySaleRelation> createBuySaleRelations(@PathVariable Long saleId, @RequestBody List<BuyContactForSaleDTO> buyContactsForSale) throws URISyntaxException {
+    public List<BuySaleRelation> createBuySaleRelations(@PathVariable Long saleId, @RequestBody List<BuyContractForSaleDTO> buyContractsForSale) throws URISyntaxException {
         log.debug("REST request to save BuySaleRelation for: {}", saleId);
 
-        List<BuySaleRelation> buySaleRelations = buySaleRelationRepository.findAllBySaleContactId(saleId);
+        List<BuySaleRelation> buySaleRelations = buySaleRelationRepository.findAllBySaleContractId(saleId);
         List<BuySaleRelation> result = new ArrayList<>();
 
-        if(buyContactsForSale != null && !buyContactsForSale.isEmpty()) {
+        if(buyContractsForSale != null && !buyContractsForSale.isEmpty()) {
             Long totalSale = 0L;
-            for (BuyContactForSaleDTO bcfs: buyContactsForSale) {
-                totalSale += bcfs.getAmountSaleInContact();
+            for (BuyContractForSaleDTO bcfs: buyContractsForSale) {
+                if((buyContractRepository.findById(bcfs.getId()).get().getAmount() - buySaleRelationRepository.sumAmountByBuyContract(bcfs.getId(), saleId)) < bcfs.getAmountSaleInContract()) {
+                    return null;
+                }
+                totalSale += bcfs.getAmountSaleInContract();
             }
-            if(saleContactRepository.findById(saleId).get().getAmount() >= totalSale) {
-                for (BuyContactForSaleDTO bcfs: buyContactsForSale) {
+            if(saleContractRepository.findById(saleId).get().getAmount() >= totalSale) {
+                for (BuyContractForSaleDTO bcfs: buyContractsForSale) {
                     BuySaleRelation bsr = new BuySaleRelation();
-                    bsr.setAmount(bcfs.getAmountSaleInContact());
-                    BuyContact buyContact = new BuyContact();
-                    buyContact.setId(bcfs.getId());
-                    SaleContact saleContact = new SaleContact();
-                    saleContact.setId(saleId);
-                    bsr.setBuyContact(buyContact);
-                    bsr.setSaleContact(saleContact);
+                    bsr.setAmount(bcfs.getAmountSaleInContract());
+                    BuyContract buyContract = new BuyContract();
+                    buyContract.setId(bcfs.getId());
+                    SaleContract saleContract = new SaleContract();
+                    saleContract.setId(saleId);
+                    bsr.setBuyContract(buyContract);
+                    bsr.setSaleContract(saleContract);
                     buySaleRelationRepository.save(bsr);
                 }
 
@@ -94,7 +101,7 @@ public class BuySaleRelationResource {
                         buySaleRelationRepository.deleteById(bsr.getId());
                     }
                 }
-                result = buySaleRelationRepository.findAllBySaleContactId(saleId);
+                result = buySaleRelationRepository.findAllBySaleContractId(saleId);
             } else {
                 return null;
             }
@@ -133,21 +140,21 @@ public class BuySaleRelationResource {
     @Timed
     public List<BuySaleRelation> getAllBuySaleRelations() {
         log.debug("REST request to get all BuySaleRelations");
-        return buySaleRelationRepository.findAllByOrOrderByBuyContactAsc();
+        return buySaleRelationRepository.findAllByOrOrderByBuyContractAsc();
     }
 
     @GetMapping("/buy-sale-relations/get-all-by-sale-contract/{scId}")
     @Timed
     public List<BuySaleRelation> getAllBuySaleRelationsOfSaleContract(@PathVariable Long scId) {
         log.debug("REST request to get all BuySaleRelations");
-        return buySaleRelationRepository.findAllBySaleContactId(scId);
+        return buySaleRelationRepository.findAllBySaleContractId(scId);
     }
 
     @GetMapping("/buy-sale-relations/get-all-by-buy-contract/{bcId}")
     @Timed
     public List<BuySaleRelation> getAllBuySaleRelationsOfBuyContract(@PathVariable Long bcId) {
         log.debug("REST request to get all BuySaleRelations");
-        return buySaleRelationRepository.findAllByBuyContactId(bcId);
+        return buySaleRelationRepository.findAllByBuyContractId(bcId);
     }
 
     /**

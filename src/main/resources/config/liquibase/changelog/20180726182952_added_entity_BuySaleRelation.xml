@@ -26,17 +26,17 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="buy_contact_id" type="bigint">
+            <column name="buy_contract_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="sale_contact_id" type="bigint">
+            <column name="sale_contract_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

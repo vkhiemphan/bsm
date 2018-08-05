@@ -9,14 +9,14 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "buyContact",
-            "otherEntityName": "buyContact",
+            "relationshipName": "buyContract",
+            "otherEntityName": "buyContract",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "saleContact",
-            "otherEntityName": "saleContact",
+            "relationshipName": "saleContract",
+            "otherEntityName": "saleContract",
             "otherEntityField": "id"
         }
     ],

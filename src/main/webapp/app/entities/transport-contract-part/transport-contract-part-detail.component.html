@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transportContractPart">
+            <h2><span>Transport Contract Part</span> {{transportContractPart.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{transportContractPart.price}}</span>
+                </dd>
+                <dt><span>Size</span></dt>
+                <dd>
+                    <span>{{transportContractPart.size}}</span>
+                </dd>
+                <dt><span>Distance</span></dt>
+                <dd>
+                    <span>{{transportContractPart.distance}}</span>
+                </dd>
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{transportContractPart.amount}}</span>
+                </dd>
+                <dt><span>Current Amount</span></dt>
+                <dd>
+                    <span>{{transportContractPart.currentAmount}}</span>
+                </dd>
+                <dt><span>Sale Contract</span></dt>
+                <dd>
+                    <div *ngIf="transportContractPart.saleContract">
+                        <a [routerLink]="['/sale-contract', transportContractPart.saleContract?.id, 'view']">{{transportContractPart.saleContract?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transport Contract</span></dt>
+                <dd>
+                    <div *ngIf="transportContractPart.transportContract">
+                        <a [routerLink]="['/transport-contract', transportContractPart.transportContract?.id, 'view']">{{transportContractPart.transportContract?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Position Start</span></dt>
+                <dd>
+                    <div *ngIf="transportContractPart.positionStart">
+                        <a [routerLink]="['/position', transportContractPart.positionStart?.id, 'view']">{{transportContractPart.positionStart?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Position Finish</span></dt>
+                <dd>
+                    <div *ngIf="transportContractPart.positionFinish">
+                        <a [routerLink]="['/position', transportContractPart.positionFinish?.id, 'view']">{{transportContractPart.positionFinish?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transport-contract-part', transportContractPart.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

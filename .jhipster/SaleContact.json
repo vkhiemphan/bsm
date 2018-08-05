@@ -1,8 +1,8 @@
 {
-    "name": "SaleContact",
+    "name": "SaleContract",
     "fields": [
         {
-            "fieldName": "saleContactCode",
+            "fieldName": "saleContractCode",
             "fieldType": "String"
         },
         {
@@ -18,7 +18,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "contactDate",
+            "fieldName": "contractDate",
             "fieldType": "LocalDate"
         },
         {
@@ -45,7 +45,7 @@
         }
     ],
     "changelogDate": "20180726182950",
-    "entityTableName": "sale_contact",
+    "entityTableName": "sale_contract",
     "dto": "no",
     "pagination": "no",
     "service": "no",

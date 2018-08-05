@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transportPlan">
+            <h2><span>Transport Plan</span> {{transportPlan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transport Date</span></dt>
+                <dd>
+                    <span>{{transportPlan.transportDate}}</span>
+                </dd>
+                <dt><span>Transport Time</span></dt>
+                <dd>
+                    <span>{{transportPlan.transportTime}}</span>
+                </dd>
+                <dt><span>Amount Per One</span></dt>
+                <dd>
+                    <span>{{transportPlan.amountPerOne}}</span>
+                </dd>
+                <dt><span>Transport Contract Part</span></dt>
+                <dd>
+                    <div *ngIf="transportPlan.transportContractPart">
+                        <a [routerLink]="['/transport-contract-part', transportPlan.transportContractPart?.id, 'view']">{{transportPlan.transportContractPart?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transport-plan', transportPlan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -8,12 +8,23 @@
     <include file="config/liquibase/changelog/20180726182947_added_entity_Product.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180726182948_added_entity_Customer.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180726182949_added_entity_Provider.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180726182950_added_entity_SaleContact.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180726182951_added_entity_BuyContact.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180726182950_added_entity_SaleContract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180726182951_added_entity_BuyContract.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180726182952_added_entity_BuySaleRelation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140013_added_entity_Position.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140014_added_entity_TransportUnit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140015_added_entity_TransportContract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140338_added_entity_TransportContractPart.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140017_added_entity_TransportPlan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140018_added_entity_TransportHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140019_added_entity_SaleContract.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20180726182950_added_entity_constraints_SaleContact.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180726182951_added_entity_constraints_BuyContact.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180726182950_added_entity_constraints_SaleContract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180726182951_added_entity_constraints_BuyContract.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180726182952_added_entity_constraints_BuySaleRelation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140015_added_entity_constraints_TransportContract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140338_added_entity_constraints_TransportContractPart.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140017_added_entity_constraints_TransportPlan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730140018_added_entity_constraints_TransportHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

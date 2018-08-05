@@ -11,14 +11,14 @@
                 </dd>
                 <dt><span>Buy Contract</span></dt>
                 <dd>
-                    <div *ngIf="buySaleRelation.buyContact">
-                        <a [routerLink]="['/buy-contact', buySaleRelation.buyContact?.id, 'view']">{{buySaleRelation.buyContact?.buyContactCode}}</a>
+                    <div *ngIf="buySaleRelation.buyContract">
+                        <a [routerLink]="['/buy-contract', buySaleRelation.buyContract?.id, 'view']">{{buySaleRelation.buyContract?.buyContractCode}}</a>
                     </div>
                 </dd>
                 <dt><span>Sale Contract</span></dt>
                 <dd>
-                    <div *ngIf="buySaleRelation.saleContact">
-                        <a [routerLink]="['/sale-contact', buySaleRelation.saleContact?.id, 'view']">{{buySaleRelation.saleContact?.saleContactCode}}</a>
+                    <div *ngIf="buySaleRelation.saleContract">
+                        <a [routerLink]="['/sale-contract', buySaleRelation.saleContract?.id, 'view']">{{buySaleRelation.saleContract?.saleContractCode}}</a>
                     </div>
                 </dd>
             </dl>

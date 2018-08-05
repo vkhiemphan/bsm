@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TransportContractPart.
+    -->
+    <changeSet id="20180730140338-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="sale_contract_id"
+                                 baseTableName="transport_contract_part"
+                                 constraintName="fk_transport_contract_part_sale_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sale_contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="transport_contract_id"
+                                 baseTableName="transport_contract_part"
+                                 constraintName="fk_transport_contract_part_transport_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transport_contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="position_start_id"
+                                 baseTableName="transport_contract_part"
+                                 constraintName="fk_transport_contract_part_position_start_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+
+        <addForeignKeyConstraint baseColumnNames="position_finish_id"
+                                 baseTableName="transport_contract_part"
+                                 constraintName="fk_transport_contract_part_position_finish_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -25,11 +25,11 @@ public class BuySaleRelation implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private BuyContact buyContact;
+    private BuyContract buyContract;
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private SaleContact saleContact;
+    private SaleContract saleContract;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -53,30 +53,30 @@ public class BuySaleRelation implements Serializable {
         this.amount = amount;
     }
 
-    public BuyContact getBuyContact() {
-        return buyContact;
+    public BuyContract getBuyContract() {
+        return buyContract;
     }
 
-    public BuySaleRelation buyContact(BuyContact buyContact) {
-        this.buyContact = buyContact;
+    public BuySaleRelation buyContract(BuyContract buyContract) {
+        this.buyContract = buyContract;
         return this;
     }
 
-    public void setBuyContact(BuyContact buyContact) {
-        this.buyContact = buyContact;
+    public void setBuyContract(BuyContract buyContract) {
+        this.buyContract = buyContract;
     }
 
-    public SaleContact getSaleContact() {
-        return saleContact;
+    public SaleContract getSaleContract() {
+        return saleContract;
     }
 
-    public BuySaleRelation saleContact(SaleContact saleContact) {
-        this.saleContact = saleContact;
+    public BuySaleRelation saleContract(SaleContract saleContract) {
+        this.saleContract = saleContract;
         return this;
     }
 
-    public void setSaleContact(SaleContact saleContact) {
-        this.saleContact = saleContact;
+    public void setSaleContract(SaleContract saleContract) {
+        this.saleContract = saleContract;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

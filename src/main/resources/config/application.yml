@@ -114,9 +114,9 @@ jhipster:
         description: BuySaleManager API documentation
         version: 0.0.1
         terms-of-service-url:
-        contact-name:
-        contact-url:
-        contact-email:
+        contract-name:
+        contract-url:
+        contract-email:
         license:
         license-url:
 

@@ -1,0 +1,56 @@
+entity Product {
+	name String,
+	note String,
+	productCode String
+}
+
+entity Customer {
+	customerCode String,
+	name String,
+	address String,
+	note String,
+	email String
+}
+
+entity Provider {
+	providerCode String,
+	name String,
+	address String,
+	note String,
+	email String
+}
+
+entity SaleContract {
+	saleContractCode String,
+	number Long,
+	amount Long,
+	price String,
+	contractDate LocalDate,
+	note String,
+	status String,
+}
+
+entity BuyContract {
+	buyContractCode String,
+	number Long,
+	amount Long,
+	price String,
+	contractDate LocalDate,
+	note String,
+	status String,
+}
+
+entity BuySaleRelation {
+	amount Long
+}
+
+relationship ManyToOne {
+	BuyContract{product} to Product,
+	BuyContract{provider} to Provider,
+
+	SaleContract{product} to Product,
+	SaleContract{customer} to Customer,
+
+	BuySaleRelation{buyContract} to BuyContract,
+	BuySaleRelation{saleContract} to SaleContract
+}

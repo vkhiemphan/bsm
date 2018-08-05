@@ -36,9 +36,9 @@ export class BuySaleRelationService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
-    saveSelectedGoodResources(scId: number, buyContactsForSale: any[]): Observable<EntityArrayResponseType> {
+    saveSelectedGoodResources(scId: number, buyContractsForSale: any[]): Observable<EntityArrayResponseType> {
         return this.http
-            .post<IBuySaleRelation[]>(`${this.resourceUrl}` + '/save-selected-good-resources/' + `${scId}`, buyContactsForSale, { observe: 'response' });
+            .post<IBuySaleRelation[]>(`${this.resourceUrl}` + '/save-selected-good-resources/' + `${scId}`, buyContractsForSale, { observe: 'response' });
     }
 
     findAllBySaleContract(scId: number): Observable<EntityArrayResponseType> {

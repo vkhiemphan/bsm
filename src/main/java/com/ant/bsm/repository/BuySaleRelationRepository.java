@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 public interface BuySaleRelationRepository extends JpaRepository<BuySaleRelation, Long> {
 
-    @Query("select sum(bsc.amount) from BuySaleRelation bsc where bsc.buyContact.id = :buyContactId and bsc.saleContact.id <> :saleContactId ")
-    Long sumAmountByBuyContact(@Param("buyContactId") Long buyContactId, @Param("saleContactId") Long saleContactId);
+    @Query("select sum(bsc.amount) from BuySaleRelation bsc where bsc.buyContract.id = :buyContractId and bsc.saleContract.id <> :saleContractId ")
+    Long sumAmountByBuyContract(@Param("buyContractId") Long buyContractId, @Param("saleContractId") Long saleContractId);
 
-    List<BuySaleRelation> findAllBySaleContactId(@Param("saleContactId") Long saleContactId);
+    List<BuySaleRelation> findAllBySaleContractId(@Param("saleContractId") Long saleContractId);
 
-    List<BuySaleRelation> findAllByBuyContactId(Long buyContactId);
+    List<BuySaleRelation> findAllByBuyContractId(Long buyContractId);
 
-    @Query("select bsr from BuySaleRelation bsr order by bsr.buyContact.id asc")
-    List<BuySaleRelation> findAllByOrOrderByBuyContactAsc();
+    @Query("select bsr from BuySaleRelation bsr order by bsr.buyContract.id asc")
+    List<BuySaleRelation> findAllByOrOrderByBuyContractAsc();
 }

@@ -7,18 +7,18 @@
         Added the constraints for entity BuySaleRelation.
     -->
     <changeSet id="20180726182952-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="buy_contact_id"
-                                 baseTableName="buy_sale_relation"
-                                 constraintName="fk_buy_sale_relation_buy_contact_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="buy_contact"/>
 
-        <addForeignKeyConstraint baseColumnNames="sale_contact_id"
+        <addForeignKeyConstraint baseColumnNames="buy_contract_id"
                                  baseTableName="buy_sale_relation"
-                                 constraintName="fk_buy_sale_relation_sale_contact_id"
+                                 constraintName="fk_buy_sale_relation_buy_contract_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="sale_contact"/>
+                                 referencedTableName="buy_contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="sale_contract_id"
+                                 baseTableName="buy_sale_relation"
+                                 constraintName="fk_buy_sale_relation_sale_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sale_contract"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-transport-contract-part-heading">Create or edit a Transport Contract Part</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!transportContractPart.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="transportContractPart.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="transportContractPart.price" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_size">Size</label>
+                    <input type="number" class="form-control" name="size" id="field_size"
+                        [(ngModel)]="transportContractPart.size" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_distance">Distance</label>
+                    <input type="number" class="form-control" name="distance" id="field_distance"
+                        [(ngModel)]="transportContractPart.distance" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                        [(ngModel)]="transportContractPart.amount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_currentAmount">Current Amount</label>
+                    <input type="number" class="form-control" name="currentAmount" id="field_currentAmount"
+                        [(ngModel)]="transportContractPart.currentAmount" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_saleContract">Sale Contract</label>
+                    <select class="form-control" id="field_saleContract" name="saleContract" [(ngModel)]="transportContractPart.saleContract" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="saleContractOption.id === transportContractPart.saleContract?.id ? transportContractPart.saleContract : saleContractOption" *ngFor="let saleContractOption of salecontracts; trackBy: trackSaleContractById">{{saleContractOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transportContract">Transport Contract</label>
+                    <select class="form-control" id="field_transportContract" name="transportContract" [(ngModel)]="transportContractPart.transportContract" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transportContractOption.id === transportContractPart.transportContract?.id ? transportContractPart.transportContract : transportContractOption" *ngFor="let transportContractOption of transportcontracts; trackBy: trackTransportContractById">{{transportContractOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_positionStart">Position Start</label>
+                    <select class="form-control" id="field_positionStart" name="positionStart" [(ngModel)]="transportContractPart.positionStart" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="positionOption.id === transportContractPart.positionStart?.id ? transportContractPart.positionStart : positionOption" *ngFor="let positionOption of positions; trackBy: trackPositionById">{{positionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_positionFinish">Position Finish</label>
+                    <select class="form-control" id="field_positionFinish" name="positionFinish" [(ngModel)]="transportContractPart.positionFinish" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="positionOption.id === transportContractPart.positionFinish?.id ? transportContractPart.positionFinish : positionOption" *ngFor="let positionOption of positions; trackBy: trackPositionById">{{positionOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

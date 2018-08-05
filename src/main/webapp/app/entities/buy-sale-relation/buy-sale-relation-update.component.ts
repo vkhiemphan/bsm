@@ -6,10 +6,10 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IBuySaleRelation } from 'app/shared/model/buy-sale-relation.model';
 import { BuySaleRelationService } from './buy-sale-relation.service';
-import { IBuyContact } from 'app/shared/model/buy-contact.model';
-import { BuyContactService } from 'app/entities/buy-contact';
-import { ISaleContact } from 'app/shared/model/sale-contact.model';
-import { SaleContactService } from 'app/entities/sale-contact';
+import { IBuyContract } from 'app/shared/model/buy-contract.model';
+import { BuyContractService } from 'app/entities/buy-contract';
+import { ISaleContract } from 'app/shared/model/sale-contract.model';
+import { SaleContractService } from 'app/entities/sale-contract';
 
 @Component({
     selector: 'jhi-buy-sale-relation-update',
@@ -19,15 +19,15 @@ export class BuySaleRelationUpdateComponent implements OnInit {
     private _buySaleRelation: IBuySaleRelation;
     isSaving: boolean;
 
-    buycontacts: IBuyContact[];
+    buycontracts: IBuyContract[];
 
-    salecontacts: ISaleContact[];
+    salecontracts: ISaleContract[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private buySaleRelationService: BuySaleRelationService,
-        private buyContactService: BuyContactService,
-        private saleContactService: SaleContactService,
+        private buyContractService: BuyContractService,
+        private saleContractService: SaleContractService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -36,15 +36,15 @@ export class BuySaleRelationUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ buySaleRelation }) => {
             this.buySaleRelation = buySaleRelation;
         });
-        this.buyContactService.query().subscribe(
-            (res: HttpResponse<IBuyContact[]>) => {
-                this.buycontacts = res.body;
+        this.buyContractService.query().subscribe(
+            (res: HttpResponse<IBuyContract[]>) => {
+                this.buycontracts = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.saleContactService.query().subscribe(
-            (res: HttpResponse<ISaleContact[]>) => {
-                this.salecontacts = res.body;
+        this.saleContractService.query().subscribe(
+            (res: HttpResponse<ISaleContract[]>) => {
+                this.salecontracts = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -80,11 +80,11 @@ export class BuySaleRelationUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackBuyContactById(index: number, item: IBuyContact) {
+    trackBuyContractById(index: number, item: IBuyContract) {
         return item.id;
     }
 
-    trackSaleContactById(index: number, item: ISaleContact) {
+    trackSaleContractById(index: number, item: ISaleContract) {
         return item.id;
     }
     get buySaleRelation() {

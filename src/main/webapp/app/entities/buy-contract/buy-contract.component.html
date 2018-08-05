@@ -1,0 +1,97 @@
+<div>
+    <h4 id="page-heading">
+        <span>Buy Contracts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-buy-contract" [routerLink]="['/buy-contract/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+        </button>
+    </h4>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="buyContracts">
+        <table class="table table-striped buy-contract-list">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Buy Contract Code</span></th>
+            <th><span>Number</span></th>
+            <th><span>Amount (Tan)</span></th>
+            <th><span>Price (VND)</span></th>
+            <th><span>Contract Date</span></th>
+            <th><span>ETA Date</span></th>
+            <th><span>Status</span></th>
+            <th><span>Product</span></th>
+            <th><span>Provider</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let buyContract of buyContractsWithSaleData ;trackBy: trackId">
+            <tr>
+                <td><a [routerLink]="['/buy-contract', buyContract.id, 'view' ]">{{buyContract.id}}</a></td>
+                <td>{{buyContract.buyContractCode}}</td>
+                <td>{{buyContract.number}}</td>
+                <td>{{buyContract.amount}}</td>
+                <td>{{buyContract.price}}</td>
+                <td>{{buyContract.contractDate | date:'mediumDate'}}</td>
+                <td>{{buyContract.etaDate | date:'mediumDate'}}</td>
+                <td>{{buyContract.status}}</td>
+                <td>
+                    <div *ngIf="buyContract.product">
+                        <a [routerLink]="['../product', buyContract.product?.id, 'view' ]" >{{buyContract.product?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="buyContract.provider">
+                        <a [routerLink]="['../provider', buyContract.provider?.id, 'view' ]" >{{buyContract.provider?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/buy-contract', buyContract.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/buy-contract', buyContract.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'buy-contract/'+ buyContract.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr style="background: #ffc107" *ngIf="buyContract.buySaleRelations && buyContract.buySaleRelations.length > 0">
+                <th style="background: #ffffff"><span></span></th>
+                <th><span>Sale Contract Code</span></th>
+                <th><span>Number</span></th>
+                <th><span>Amount (Tan)</span></th>
+                <th><span>Price (VND)</span></th>
+                <th><span>Contract Date</span></th>
+                <th><span>Delivery Date</span></th>
+                <th><span>Status</span></th>
+                <th><span>Customer</span></th>
+                <th><span>Sale</span></th>
+            </tr>
+            <tr *ngFor="let bcr of buyContract.buySaleRelations" style="background: #ffc107">
+                <th style="background: #ffffff"><span></span></th>
+                <td><a [routerLink]="['/sale-contract', bcr.saleContract.id, 'view' ]">{{bcr.saleContract.saleContractCode}}</a></td>
+                <td>{{bcr.saleContract.number}}</td>
+                <td>{{bcr.saleContract.amount}}</td>
+                <td>{{bcr.saleContract.price}}</td>
+                <td>{{bcr.saleContract.contractDate | date:'mediumDate'}}</td>
+                <td>{{bcr.saleContract.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{bcr.saleContract.status}}</td>
+                <td>{{bcr.saleContract.customer.name}}</td>
+                <td>{{bcr.amount}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

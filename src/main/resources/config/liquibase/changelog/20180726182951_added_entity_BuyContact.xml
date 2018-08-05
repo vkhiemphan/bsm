@@ -15,14 +15,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity BuyContact.
+        Added the entity BuyContract.
     -->
     <changeSet id="20180726182951-1" author="jhipster">
-        <createTable tableName="buy_contact">
+        <createTable tableName="buy_contract">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="buy_contact_code" type="varchar(255)">
+            <column name="buy_contract_code" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -38,7 +38,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="contact_date" type="date">
+            <column name="contract_date" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -60,7 +60,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

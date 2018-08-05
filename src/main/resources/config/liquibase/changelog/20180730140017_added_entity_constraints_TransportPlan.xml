@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TransportPlan.
+    -->
+    <changeSet id="20180730140017-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="transport_contract_part_id"
+                                 baseTableName="transport_plan"
+                                 constraintName="fk_transport_plan_transport_contract_part_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transport_contract_part"/>
+
+    </changeSet>
+</databaseChangeLog>

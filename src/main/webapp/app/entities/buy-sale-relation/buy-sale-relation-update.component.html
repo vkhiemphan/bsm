@@ -16,17 +16,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_buyContact">Buy Contract</label>
-                    <select class="form-control" id="field_buyContact" name="buyContact" [(ngModel)]="buySaleRelation.buyContact" >
+                    <label class="form-control-label" for="field_buyContract">Buy Contract</label>
+                    <select class="form-control" id="field_buyContract" name="buyContract" [(ngModel)]="buySaleRelation.buyContract" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="buyContactOption.id === buySaleRelation.buyContact?.id ? buySaleRelation.buyContact : buyContactOption" *ngFor="let buyContactOption of buycontacts; trackBy: trackBuyContactById">{{buyContactOption.buyContactCode}}</option>
+                        <option [ngValue]="buyContractOption.id === buySaleRelation.buyContract?.id ? buySaleRelation.buyContract : buyContractOption" *ngFor="let buyContractOption of buycontracts; trackBy: trackBuyContractById">{{buyContractOption.buyContractCode}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_saleContact">Sale Contract</label>
-                    <select class="form-control" id="field_saleContact" name="saleContact" [(ngModel)]="buySaleRelation.saleContact" >
+                    <label class="form-control-label" for="field_saleContract">Sale Contract</label>
+                    <select class="form-control" id="field_saleContract" name="saleContract" [(ngModel)]="buySaleRelation.saleContract" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="saleContactOption.id === buySaleRelation.saleContact?.id ? buySaleRelation.saleContact : saleContactOption" *ngFor="let saleContactOption of salecontacts; trackBy: trackSaleContactById">{{saleContactOption.saleContactCode}}</option>
+                        <option [ngValue]="saleContractOption.id === buySaleRelation.saleContract?.id ? buySaleRelation.saleContract : saleContractOption" *ngFor="let saleContractOption of salecontracts; trackBy: trackSaleContractById">{{saleContractOption.saleContractCode}}</option>
                     </select>
                 </div>
             </div>

@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="saleContract">
+            <h2 class="page-title"><span>Sale Contract</span> {{saleContract.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <i class="fas fa-dollar-sign"></i>
+            <div class="table-responsive" *ngIf="saleContract">
+                <span class="section-title">Information</span>
+                <table class="table table-striped sale-contract-list">
+                    <thead>
+                    <th><span>Code</span></th>
+                    <th><span>Number</span></th>
+                    <th><span>Price</span></th>
+                    <th><span>Amount</span></th>
+                    <th><span>Contract Date</span></th>
+                    <th><span>Delivery Date</span></th>
+                    <th><span>Status</span></th>
+                    <th><span>Product</span></th>
+                    <th><span>Customer</span></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>{{saleContract.saleContractCode}}</span></td>
+                        <td><span>{{saleContract.number}}</span></td>
+                        <td><span class="info-press">{{saleContract.price}}</span>Đ</td>
+                        <td><span class="info-press">{{saleContract.amount}}</span>T</td>
+                        <td><span>{{saleContract.contractDate | date:'mediumDate'}}</span></td>
+                        <td><span>{{saleContract.deliveryDate | date:'mediumDate'}}</span></td>
+                        <td><span>{{saleContract.status}}</span></td>
+                        <td>
+                            <div *ngIf="saleContract.product">
+                                <a [routerLink]="['/product', saleContract.product?.id, 'view']">{{saleContract.product?.name}}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="saleContract.customer">
+                                <a [routerLink]="['/customer', saleContract.customer?.id, 'view']">{{saleContract.customer?.name  }}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <label>Note: </label>
+                <span>{{saleContract.note}}</span>
+            </div>
+            <span class="section-title">Current Good Resources (Buy Contracts)</span>
+            <div class="table-responsive" *ngIf="buySaleRelations">
+                <table class="table table-striped sale-contract-list">
+                    <thead>
+                    <th><span>Code</span></th>
+                    <th><span>Price</span></th>
+                    <th><span>Amount</span></th>
+                    <th><span>Sale</span></th>
+                    <th><span>ETA Date</span></th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let bsr of buySaleRelations ;trackBy: trackId">
+                        <td><span>{{bsr.buyContract.buyContractCode}}</span></td>
+                        <td><span class="info-press">{{bsr.buyContract.price | number:'1.0-0'}}</span>Đ</td>
+                        <td><span>{{bsr.buyContract.amount}} T</span></td>
+                        <td><span class="info-press">{{bsr.amount}} T</span></td>
+                        <td><span>{{bsr.buyContract.etaDate | date:'mediumDate'}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive" *ngIf="buyContractsForSale">
+                <span class="section-title">Seletect New Good Resources (Buy Contracts)</span>
+                <div *ngIf="showCannotSaveError"><span style="color: red">Total amount cannot be rather than amount</span></div>
+                <table class="table table-striped sale-contract-list">
+                    <thead>
+                    <th><span>Code</span></th>
+                    <th><span>Price</span></th>
+                    <th><span>Amount</span></th>
+                    <th><span>ETA Date</span></th>
+                    <th><span>Remain Amount</span></th>
+                    <th><span>Sale</span></th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let buyContract of buyContractsForSale ;trackBy: trackId">
+                        <td><span>{{buyContract.buyContractCode}}</span></td>
+                        <td><span class="info-press">{{buyContract.price}} Đ</span></td>
+                        <td><span class="info-press">{{buyContract.amount}} T</span></td>
+                        <td><span>{{buyContract.etaDate | date:'mediumDate'}}</span></td>
+                        <td><span class="info-press">{{buyContract.remainAmount}} T</span></td>
+                        <td><input type="number" class="form-control amount-input" name="amount" id="field_amount"
+                                   [(ngModel)]="buyContract.amountSaleInContract" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+            <button type="button"
+                    [routerLink]="['/sale-contract', saleContract.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+            <button type="button" class="btn btn-primary" *ngIf="saleContract.status !== 'COMPLETE'" (click)="selectGoodSources(saleContract.id)">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Choose Good Resources</span>
+            </button>
+            <button type="button" class="btn btn-primary" *ngIf="saleContract.status !== 'COMPLETE' && buyContractsForSale" (click)="saveSelectedGoodSources(saleContract.id, buyContractsForSale)">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Save</span>
+            </button>
+        </div>
+    </div>
+</div>

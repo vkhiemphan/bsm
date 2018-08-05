@@ -1,0 +1,42 @@
+{
+    "name": "TransportContract",
+    "fields": [
+        {
+            "fieldName": "contractCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contractNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "contractDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "finishDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "transportUnit",
+            "otherEntityName": "transportUnit",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730140015",
+    "entityTableName": "transport_contract",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span>Transport Contract Parts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transport-contract-part" [routerLink]="['/transport-contract-part/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Transport Contract Part
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="transportContractParts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Price</span></th>
+            <th><span>Size</span></th>
+            <th><span>Distance</span></th>
+            <th><span>Amount</span></th>
+            <th><span>Current Amount</span></th>
+            <th><span>Sale Contract</span></th>
+            <th><span>Transport Contract</span></th>
+            <th><span>Position Start</span></th>
+            <th><span>Position Finish</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transportContractPart of transportContractParts ;trackBy: trackId">
+                <td><a [routerLink]="['/transport-contract-part', transportContractPart.id, 'view' ]">{{transportContractPart.id}}</a></td>
+                <td>{{transportContractPart.price}}</td>
+                <td>{{transportContractPart.size}}</td>
+                <td>{{transportContractPart.distance}}</td>
+                <td>{{transportContractPart.amount}}</td>
+                <td>{{transportContractPart.currentAmount}}</td>
+                <td>
+                    <div *ngIf="transportContractPart.saleContract">
+                        <a [routerLink]="['../sale-contract', transportContractPart.saleContract?.id, 'view' ]" >{{transportContractPart.saleContract?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="transportContractPart.transportContract">
+                        <a [routerLink]="['../transport-contract', transportContractPart.transportContract?.id, 'view' ]" >{{transportContractPart.transportContract?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="transportContractPart.positionStart">
+                        <a [routerLink]="['../position', transportContractPart.positionStart?.id, 'view' ]" >{{transportContractPart.positionStart?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="transportContractPart.positionFinish">
+                        <a [routerLink]="['../position', transportContractPart.positionFinish?.id, 'view' ]" >{{transportContractPart.positionFinish?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/transport-contract-part', transportContractPart.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/transport-contract-part', transportContractPart.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transport-contract-part/'+ transportContractPart.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

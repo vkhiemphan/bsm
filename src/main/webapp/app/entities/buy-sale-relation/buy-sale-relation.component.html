@@ -26,13 +26,13 @@
                 <td><a [routerLink]="['/buy-sale-relation', buySaleRelation.id, 'view' ]">{{buySaleRelation.id}}</a></td>
                 <td>{{buySaleRelation.amount}}</td>
                 <td>
-                    <div *ngIf="buySaleRelation.buyContact">
-                        <a [routerLink]="['../buy-contact', buySaleRelation.buyContact?.id, 'view' ]" >{{buySaleRelation.buyContact?.buyContactCode}}</a>
+                    <div *ngIf="buySaleRelation.buyContract">
+                        <a [routerLink]="['../buy-contract', buySaleRelation.buyContract?.id, 'view' ]" >{{buySaleRelation.buyContract?.buyContractCode}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="buySaleRelation.saleContact">
-                        <a [routerLink]="['../sale-contact', buySaleRelation.saleContact?.id, 'view' ]" >{{buySaleRelation.saleContact?.saleContactCode}}</a>
+                    <div *ngIf="buySaleRelation.saleContract">
+                        <a [routerLink]="['../sale-contract', buySaleRelation.saleContract?.id, 'view' ]" >{{buySaleRelation.saleContract?.saleContractCode}}</a>
                     </div>
                 </td>
                 <td class="text-right">

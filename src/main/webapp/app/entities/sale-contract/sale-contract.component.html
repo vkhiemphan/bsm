@@ -1,0 +1,76 @@
+<div>
+    <h4 id="page-heading">
+        <span class="page-title">Sale Contracts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sale-contract" [routerLink]="['/sale-contract/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Sale Contract
+            </span>
+        </button>
+    </h4>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="saleContracts">
+        <table class="table table-striped sale-contract-list">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sale Contract Code</span></th>
+            <th><span>Number</span></th>
+            <th><span>Amount (Tan)</span></th>
+            <th><span>Price (VND)</span></th>
+            <th><span>Contract Date</span></th>
+            <th><span>Delivery Date</span></th>
+            <th><span>Status</span></th>
+            <th><span>Product</span></th>
+            <th><span>Customer</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let saleContract of saleContracts ;trackBy: trackId">
+                <td><a [routerLink]="['/sale-contract', saleContract.id, 'view' ]">{{saleContract.id}}</a></td>
+                <td>{{saleContract.saleContractCode}}</td>
+                <td>{{saleContract.number}}</td>
+                <td>{{saleContract.amount}}</td>
+                <td>{{saleContract.price}}</td>
+                <td>{{saleContract.contractDate | date:'mediumDate'}}</td>
+                <td>{{saleContract.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{saleContract.status}}</td>
+                <td>
+                    <div *ngIf="saleContract.product">
+                        <a [routerLink]="['../product', saleContract.product?.id, 'view' ]" >{{saleContract.product?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="saleContract.customer">
+                        <a [routerLink]="['../customer', saleContract.customer?.id, 'view' ]" >{{saleContract.customer?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sale-contract', saleContract.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sale-contract', saleContract.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sale-contract/'+ saleContract.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
