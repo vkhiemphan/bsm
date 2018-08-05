@@ -3,9 +3,6 @@
         <span>Transport Contracts</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transport-contract" [routerLink]="['/transport-contract/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span >
-            Create new Transport Contract
-            </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -43,13 +40,11 @@
                                 [routerLink]="['/transport-contract', transportContract.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/transport-contract', transportContract.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'transport-contract/'+ transportContract.id + '/delete'} }]"
@@ -57,7 +52,6 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Delete</span>
                         </button>
                     </div>
                 </td>

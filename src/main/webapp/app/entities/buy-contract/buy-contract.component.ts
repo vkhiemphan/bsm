@@ -6,7 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IBuyContract } from 'app/shared/model/buy-contract.model';
 import { Principal } from 'app/core';
 import { BuyContractService } from './buy-contract.service';
-import {IBuyContractWithSaleData} from 'app/shared/model/buy-contract-with-sale-data.model';
+import { IBuyContractWithSaleData } from 'app/shared/model/buy-contract-with-sale-data.model';
 
 @Component({
     selector: 'jhi-buy-contract',

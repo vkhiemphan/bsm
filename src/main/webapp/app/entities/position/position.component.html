@@ -3,9 +3,6 @@
         <span>Positions</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-position" [routerLink]="['/position/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span >
-            Create new Position
-            </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -35,13 +32,11 @@
                                 [routerLink]="['/position', position.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/position', position.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'position/'+ position.id + '/delete'} }]"
@@ -49,7 +44,6 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Delete</span>
                         </button>
                     </div>
                 </td>
